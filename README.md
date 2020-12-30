@@ -13,6 +13,14 @@ https://twilink.click
 
 [manaki (デザイン・開発)](https://twitter.com/mikeanakida)  
 
+
+## 使用技術
+
+- Next.js
+- Firebase
+- React Hook Home
+- tailwindcss
+
 ## 動作確認
 
 ```bash
