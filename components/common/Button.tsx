@@ -7,7 +7,7 @@ type Props = {
   onClick?: ()=> void;
 };
 
-const Button: React.FC<Props> = ({ children, href }) => {
+const Button: React.FC<Props> = ({ children, href, onClick }) => {
   return (
     <span className="text-center">
       {href ? (
@@ -17,6 +17,7 @@ const Button: React.FC<Props> = ({ children, href }) => {
       ) : (
         <a
           href="#"
+          onClick={onClick}
           className="inline-block mx-auto bg-blue-500 text-white py-2 w-32 text-center shadow rounded-md"
         >
           {children}
