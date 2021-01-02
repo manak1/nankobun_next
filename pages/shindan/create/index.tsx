@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Default from "../../../components/layout/Default";
 import CreateForm from "../../../components/view/create/CreateForm";
 import { createShindan } from "../../../lib/firebase";
-import ModalEmoji from "../../../components/common/modal/ModalEmoji";
 
 const Create: React.FC = () => {
   const initialForm = {
