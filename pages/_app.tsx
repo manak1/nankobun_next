@@ -1,4 +1,3 @@
-import "../styles/globals.css";
 import "../lib/firebase";
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
