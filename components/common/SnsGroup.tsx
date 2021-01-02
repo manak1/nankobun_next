@@ -37,7 +37,7 @@ const SnsGroup: React.FC = ()=> {
         {
           lists.map((sns)=> {
             return (
-              <li>
+              <li key={sns.name}>
               <ButtonSns href={sns.href} bgColor={sns.bgColor} name={sns.name} icon={sns.icon} >
                 {sns.name}
               </ButtonSns>

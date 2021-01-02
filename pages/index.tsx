@@ -1,9 +1,8 @@
 import Logo from "../components/icons/Logo";
 import Default from "../components/layout/Default";
-import Button from "../components/common/Button"
-import SnsGroup from "../components/common/SnsGroup"
+import Button from "../components/common/Button";
+import SnsGroup from "../components/common/SnsGroup";
 export default function Home() {
-  
   return (
     <Default>
       <div className="pt-4 container mx-auto">
@@ -15,12 +14,14 @@ export default function Home() {
           サイト内の診断を試してみたり、面白い診断を作ってみてください！
         </p>
         <div className="text-center mt-6">
-          <Button href="/">
-            診断してみる
+          <Button href="/">診断してみる</Button>
+        </div>
+        <SnsGroup />
+        <div className="mt-4 text-center">
+          <Button href="/shindan/create">
+            診断を作る
           </Button>
         </div>
-        <SnsGroup/>
-        <ul className="flex space-x-2 mt-12 justify-center"></ul>
       </div>
     </Default>
   );
