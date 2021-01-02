@@ -1,6 +1,16 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import Form from "../@types/form"
+
+export async function createShindan(form: Form): Promise<string> {
+  const shindan = firebase.firestore().collection('shindan')
+  const result = await shindan.add({
+    ...form
+  })
+  const docId = result.id
+  return docId;
+}
 
 
 if(typeof window !== 'undefined' && firebase.apps.length === 0) {
