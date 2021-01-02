@@ -12,6 +12,7 @@
     "@types/node": "^14.14.16",
     "@types/react": "^17.0.0",
     "autoprefixer": "^10.1.0",
+    "emoji-mart": "^3.0.0",
     "firebase": "^8.2.1",
     "next": "10.0.4",
     "postcss": "^8.2.1",
