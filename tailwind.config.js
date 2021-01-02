@@ -1,10 +1,10 @@
 module.exports = {
-  purge: ['./pages/**/*/js','./components/**/*.js'],
+  purge: ["./pages/**/*/.${js,tsx}", "./components/**/*.${js,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     backgroundColor: (theme) => ({
-      ...theme('colors'),
-      base: '#F9F9F9'
+      ...theme("colors"),
+      base: "#F9F9F9",
     }),
   },
   variants: {
@@ -13,11 +13,11 @@ module.exports = {
   plugins: [
     function ({ addComponents }) {
       addComponents({
-        '.container': {
-          maxWidth: '480px',
+        ".container": {
+          maxWidth: "480px",
         },
-      })
+      });
     },
-    require('@tailwindcss/custom-forms')
+    require("@tailwindcss/custom-forms"),
   ],
-}
+};
