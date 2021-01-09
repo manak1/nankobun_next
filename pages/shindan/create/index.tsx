@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Default from "../../../components/layout/Default";
 import CreateForm from "../../../components/view/create/CreateForm";
+import Ogp from "../../../components/common/Ogp";
 import { createShindan } from "../../../lib/firebase";
 
 const Create: React.FC = () => {
@@ -8,6 +9,14 @@ const Create: React.FC = () => {
     name: "manaki",
     emoji: "👩",
     author: "manaki is gorilla",
+    height: 20,
+    unit: "個",
+  };
+
+  const shindanData = {
+    name: "リンゴ",
+    emoji: "🍎",
+    author: "manaki",
     height: 20,
     unit: "個",
   };
@@ -30,10 +39,12 @@ const Create: React.FC = () => {
         <aside className="text-center text-gray-500">
           <p>( ログイン不要 )</p>
         </aside>
-        <CreateForm form={form} setForm={setForm} />
-        <div className="mt-12">
-          <p>完成イメージ</p>
-        </div>
+        <CreateForm form={form} setForm={setForm}>
+          <div className="mt-12">
+            <p>完成イメージ</p>
+            <Ogp shindanData={shindanData} />
+          </div>
+        </CreateForm>
       </section>
     </Default>
   );

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "m-plus";
+  src: url("/fonts/mplus-2p-black.otf");
+}
+
+.fontMplus {
+  font-family: "m-plus";
+}
+
+html {
+  background-color: #f7fafc;
+}

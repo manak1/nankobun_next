@@ -1,5 +1,6 @@
 import "../lib/firebase";
 import "tailwindcss/tailwind.css";
+import "../styles/style.css";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
