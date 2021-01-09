@@ -3,7 +3,7 @@ import React from "react";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-white w-full">
+    <header className="bg-white w-full container mx-auto border-l border-r">
       <div className="flex items-center justify-between mx-auto container px-4 py-2">
         <Link href="/">
           <a href="#">

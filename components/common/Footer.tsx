@@ -30,13 +30,13 @@ const FooterMessage = css({
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-white pt-4 pb-4">
+    <footer className="w-full container mx-auto border-l border-r pt-4 pb-4">
       <div className="container px-4 text-center mx-auto">
         <h2 className="font-bold">作者</h2>
         <div className="mt-2">
           <a
             href="https://twitter.com/mikeanakida"
-            className="flex justify-center items-center block space-x-6"
+            className="flex justify-center items-center space-x-6"
           >
             <div className="text-center">
               <img
