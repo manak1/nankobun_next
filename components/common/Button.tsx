@@ -1,11 +1,17 @@
+/** @jsxImportSource @emotion/react */
 import React from "react";
 import Link from "next/link";
+import { css } from "@emotion/react";
 
 type Props = {
   href?: string;
   children: string;
   onClick?: () => void;
 };
+
+const buttonColor = css({
+  backgroundColor: "#26a6ff;",
+});
 
 const Button: React.FC<Props> = ({ children, href, onClick }) => {
   return (

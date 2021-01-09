@@ -9,7 +9,7 @@ import Detecter from "../../common/Detecter";
 
 type Props = {
   form: Form;
-  setForm: any;
+  setForm: (form: Form) => void;
 };
 
 const picker = css({
@@ -18,10 +18,13 @@ const picker = css({
   transform: "translate(-50%,-50%)",
 });
 
+const buttonColor = css({
+  backgroundColor: "#26a6ff;",
+});
 /* あなたの身長は${name}何個分？ */
 /* 診断してみる　ボタン */
 
-const CreateForm: React.FC<Props> = ({ form, setForm }) => {
+const CreateForm: React.FC<Props> = ({ form, setForm, children }) => {
   const [showPicker, setShowPicker] = useState(false);
   const [emojiData, setEmojiData] = useState({
     native: "🍎",
@@ -60,6 +63,7 @@ const CreateForm: React.FC<Props> = ({ form, setForm }) => {
       emoji: "👩",
       author: "manaki is gorilla",
       height: 20,
+      unit: "1",
     };
     closeModal();
     setForm(initialForm);
@@ -70,7 +74,7 @@ const CreateForm: React.FC<Props> = ({ form, setForm }) => {
   }
 
   return (
-    <form action="#" onSubmit={onSubmit} className="text-left">
+    <form action="#" onSubmit={onSubmit} className="text-left px-8">
       <div className="flex flex-col mt-4">
         <span className="text-center font-medium">モノの絵文字</span>
         <a href="#" className="mt-2 text-center" onClick={showModal}>
@@ -107,48 +111,59 @@ const CreateForm: React.FC<Props> = ({ form, setForm }) => {
       ) : (
         ""
       )}
-      <div className="flex items-center justify-between space-x-4 mt-4">
-        <div className="w-1/2 flex flex-col">
-          <label htmlFor="item-name" className="font-medium">
-            モノの名前
-          </label>
+      <div className="w-full mt-2">
+        <label htmlFor="item-name" className="font-medium">
+          モノの名前
+        </label>
+        <input
+          className="mt-2 form-input block w-full rounded  border"
+          placeholder="リンゴ"
+          name="name"
+          ref={register({
+            required: "必須項目です",
+          })}
+          type="text"
+        />
+      </div>
+
+      <div className="w-full mt-4 flex flex-col">
+        <label htmlFor="" className="font-medium">
+          モノの高さ
+        </label>
+        <div className="flex items-center justify-center mt-2 space-x-2">
           <input
-            className="mt-2 form-input mt-1 block w-full rounded"
-            placeholder="リンゴ"
-            name="name"
+            className="form-input mt-1 block w-full rounded  border"
+            type="number"
+            name="height"
+            placeholder="10"
             ref={register({
               required: "必須項目です",
             })}
-            type="text"
           />
-        </div>
-
-        <div className="w-1/2 flex flex-col">
-          <label htmlFor="" className="font-medium">
-            モノの高さ
-          </label>
-          <div className="flex items-center justify-center mt-2 space-x-2">
-            <input
-              className="form-input mt-1 block w-full rounded"
-              type="number"
-              name="height"
-              placeholder="10"
-              ref={register({
-                required: "必須項目です",
-              })}
-            />
-            <span>cm</span>
-          </div>
+          <span>cm</span>
         </div>
       </div>
-
-      <div className="flex items-center justify-between space-x-4">
-        <div className="flex flex-col mt-4 w-1/2">
+      <div className="flex flex-col mt-4 ">
+        <label htmlFor="" className="font-medium">
+          モノの単位
+        </label>
+        <input
+          className="mt-2 form-input block w-full rounded  border"
+          placeholder="個"
+          type="text"
+          name="author"
+          ref={register({
+            required: "必須項目です",
+          })}
+        />
+      </div>
+      <div className="items-center">
+        <div className="flex flex-col mt-4 w-full">
           <label htmlFor="" className="font-medium">
             作者名
           </label>
           <input
-            className="mt-2 form-input block w-full rounded"
+            className="mt-2 form-input block w-full rounded  border"
             placeholder="名無しさん"
             type="text"
             name="author"
@@ -157,27 +172,15 @@ const CreateForm: React.FC<Props> = ({ form, setForm }) => {
             })}
           />
         </div>
-        <div className="flex flex-col mt-4 w-1/2">
-          <label htmlFor="" className="font-medium">
-            モノの単位
-          </label>
-          <input
-            className="mt-2 form-input block w-full rounded"
-            placeholder="個"
-            type="text"
-            name="author"
-            ref={register({
-              required: "必須項目です",
-            })}
-          />
-        </div>
       </div>
+      <div>{children}</div>
       <div className="text-center mt-8">
         <button
           type="submit"
-          className="outline-none inline-block mx-auto bg-blue-500 text-white py-2 w-32 text-center shadow rounded-md hover:opacity-75"
+          className="outline-none inline-block mx-auto text-white py-2 w-32 text-center shadow rounded-md hover:opacity-75"
+          css={buttonColor}
         >
-          診断を作成する
+          診断を作成
         </button>
       </div>
     </form>
