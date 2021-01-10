@@ -21,10 +21,13 @@ const picker = css({
 const buttonColor = css({
   backgroundColor: "#26a6ff;",
 });
+
+const numberRegExp = /^[0-9]+$/;
+
 /* あなたの身長は${name}何個分？ */
 /* 診断してみる　ボタン */
 
-const CreateForm: React.FC<Props> = ({ form, setForm, children }) => {
+const CreateForm: React.FC<Props> = ({ form, setForm }) => {
   const [showPicker, setShowPicker] = useState(false);
   const [emojiData, setEmojiData] = useState({
     native: "🍎",
@@ -34,9 +37,9 @@ const CreateForm: React.FC<Props> = ({ form, setForm, children }) => {
     mode: "onChange",
     defaultValues: {
       author: "",
-      emoji: "",
       name: "",
       height: null,
+      unit: "",
     },
   });
 
@@ -48,30 +51,34 @@ const CreateForm: React.FC<Props> = ({ form, setForm, children }) => {
     setShowPicker(false);
   }
 
+  function updateUnit(data) {
+    console.log(data.target.value);
+    let tempForm = { ...form };
+    tempForm.unit = data?.target?.value;
+    setForm(tempForm);
+  }
+
   function emojiSelected(emoji: any) {
     closeModal();
     const tempEmojiData = {
       native: emoji.native,
       id: emoji.id,
     };
+
     setEmojiData(tempEmojiData);
+    let tempForm = { ...form };
+    tempForm.emoji = emoji.native;
+    setForm(tempForm);
   }
 
-  const onSubmit = handleSubmit((data) => {
-    const initialForm = {
-      name: "manaki is god",
-      emoji: "👩",
-      author: "manaki is gorilla",
-      height: 20,
-      unit: "1",
+  const onSubmit = handleSubmit((formData) => {
+    const tempForm = {
+      emoji: emojiData,
+      ...formData,
     };
     closeModal();
-    setForm(initialForm);
+    setForm(tempForm);
   });
-
-  function inputClass() {
-    return "mt-2 form-input mt-1 block w-full";
-  }
 
   return (
     <form action="#" onSubmit={onSubmit} className="text-left px-8">
@@ -86,7 +93,7 @@ const CreateForm: React.FC<Props> = ({ form, setForm, children }) => {
       {showPicker ? (
         <>
           <Detecter onClick={closeModal} />
-          <div css={picker} className="absolute shadow-lg inline-block">
+          <div css={picker} className="absolute shadow-lg inline-block z-50">
             <Picker
               onSelect={(emoji) => emojiSelected(emoji)}
               i18n={{
@@ -113,57 +120,93 @@ const CreateForm: React.FC<Props> = ({ form, setForm, children }) => {
       )}
       <div className="w-full mt-2">
         <label htmlFor="item-name" className="font-medium">
-          モノの名前
+          📦モノの名前
         </label>
         <input
-          className="mt-2 form-input block w-full rounded  border"
+          className="mt-2 form-input bg-white block w-full rounded  border"
           placeholder="リンゴ"
           name="name"
           ref={register({
             required: "必須項目です",
+            maxLength: {
+              value: 20,
+              message: "20文字以内で入力してください",
+            },
           })}
           type="text"
         />
+        {errors.name?.message ? (
+          <span className="text-red-500">*{errors.name?.message}</span>
+        ) : (
+          ""
+        )}
       </div>
 
       <div className="w-full mt-4 flex flex-col">
         <label htmlFor="" className="font-medium">
-          モノの高さ
+          📏モノの高さ
         </label>
         <div className="flex items-center justify-center mt-2 space-x-2">
           <input
-            className="form-input mt-1 block w-full rounded  border"
+            className="form-input bg-white mt-1 block w-full rounded  border"
             type="number"
             name="height"
             placeholder="10"
             ref={register({
               required: "必須項目です",
+              pattern: {
+                value: numberRegExp,
+                message: "整数で入力してください",
+              },
+              min: {
+                value: 1,
+                message: "1以上の数字を入力してください",
+              },
+              max: {
+                value: 1000,
+                message: "1000以下の数字を入力してください",
+              },
             })}
           />
           <span>cm</span>
         </div>
+        {errors.height?.message ? (
+          <span className="text-red-500">*{errors.height?.message}</span>
+        ) : (
+          ""
+        )}
       </div>
       <div className="flex flex-col mt-4 ">
         <label htmlFor="" className="font-medium">
-          モノの単位
+          📊モノの単位
         </label>
         <input
-          className="mt-2 form-input block w-full rounded  border"
+          className="mt-2 form-input bg-white block w-full rounded  border"
           placeholder="個"
           type="text"
-          name="author"
+          name="unit"
+          onChange={updateUnit}
           ref={register({
             required: "必須項目です",
+            maxLength: {
+              value: 1,
+              message: "1文字以内で入力してください",
+            },
           })}
         />
+        {errors.unit?.message ? (
+          <span className="text-red-500">*{errors.unit?.message}</span>
+        ) : (
+          ""
+        )}
       </div>
       <div className="items-center">
         <div className="flex flex-col mt-4 w-full">
           <label htmlFor="" className="font-medium">
-            作者名
+            🙍‍♂️作者名
           </label>
           <input
-            className="mt-2 form-input block w-full rounded  border"
+            className="mt-2 form-input bg-white block w-full rounded  border"
             placeholder="名無しさん"
             type="text"
             name="author"
@@ -171,10 +214,14 @@ const CreateForm: React.FC<Props> = ({ form, setForm, children }) => {
               required: "必須項目です",
             })}
           />
+          {errors.author?.message ? (
+            <span className="text-red-500">*{errors.author?.message}</span>
+          ) : (
+            ""
+          )}
         </div>
       </div>
-      <div>{children}</div>
-      <div className="text-center mt-8">
+      <div className="text-center mt-12">
         <button
           type="submit"
           className="outline-none inline-block mx-auto text-white py-2 w-32 text-center shadow rounded-md hover:opacity-75"
