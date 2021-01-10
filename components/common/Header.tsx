@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import Button from "../common/Button";
 
 const Header: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const Header: React.FC = () => {
             <h1 className="font-bold text-lg">身長診断メーカー</h1>
           </a>
         </Link>
-        <a href="#">診断を作る</a>
+        <Button href="/shindan/create">診断を作る</Button>
       </div>
     </header>
   );

@@ -39,12 +39,11 @@ const Create: React.FC = () => {
         <aside className="text-center text-gray-500">
           <p>( ログイン不要 )</p>
         </aside>
-        <CreateForm form={form} setForm={setForm}>
-          <div className="mt-12">
-            <p>完成イメージ</p>
-            <Ogp shindanData={shindanData} />
-          </div>
-        </CreateForm>
+        <CreateForm form={form} setForm={setForm} />
+        <div className="mt-12 px-8">
+          <p className="font-bold mb-2">完成イメージ✨</p>
+          <Ogp shindanData={form} />
+        </div>
       </section>
     </Default>
   );

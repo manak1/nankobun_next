@@ -54,9 +54,7 @@ const Footer: React.FC = () => {
               >
                 デザイン、開発を担当しました!
                 <br />
-                <a className="text-blue-400" href="https://twilink.click">
-                  twilink
-                </a>
+                <span className="text-blue-400">twilink.click</span>
                 もよろしくね！
               </p>
             </div>

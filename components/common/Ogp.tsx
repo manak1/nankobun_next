@@ -6,6 +6,7 @@ import { css } from "@emotion/react";
 const ogpBox = css({
   backgroundColor: "#72caf3",
   fontFamily: "fontMplus",
+  zindex: "-1",
 });
 
 const buttonCta = css({
