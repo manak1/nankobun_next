@@ -43,7 +43,7 @@ const Ogp: React.FC<Props> = ({ shindanData }) => {
           <span style={{ fontSize: "45px" }} className="mr-1">
             {shindanData.emoji}
           </span>
-          何個分?
+          何{shindanData.unit}分?
         </p>
       </div>
       <div css={ogpBottom}>

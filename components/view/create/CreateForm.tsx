@@ -10,6 +10,7 @@ import Detecter from "../../common/Detecter";
 type Props = {
   form: Form;
   setForm: (form: Form) => void;
+  confirm: () => void;
 };
 
 const picker = css({
@@ -27,7 +28,7 @@ const numberRegExp = /^[0-9]+$/;
 /* あなたの身長は${name}何個分？ */
 /* 診断してみる　ボタン */
 
-const CreateForm: React.FC<Props> = ({ form, setForm }) => {
+const CreateForm: React.FC<Props> = ({ form, setForm, confirm }) => {
   const [showPicker, setShowPicker] = useState(false);
   const [emojiData, setEmojiData] = useState({
     native: "🍎",
@@ -52,10 +53,12 @@ const CreateForm: React.FC<Props> = ({ form, setForm }) => {
   }
 
   function updateUnit(data) {
-    console.log(data.target.value);
-    let tempForm = { ...form };
-    tempForm.unit = data?.target?.value;
-    setForm(tempForm);
+    const targetValue = data.target.value;
+    if (targetValue.length === 1) {
+      let tempForm = { ...form };
+      tempForm.unit = targetValue;
+      setForm(tempForm);
+    }
   }
 
   function emojiSelected(emoji: any) {
@@ -73,11 +76,13 @@ const CreateForm: React.FC<Props> = ({ form, setForm }) => {
 
   const onSubmit = handleSubmit((formData) => {
     const tempForm = {
-      emoji: emojiData,
+      emoji: emojiData.native,
       ...formData,
     };
     closeModal();
-    setForm(tempForm);
+    console.log(tempForm);
+    setForm({ ...tempForm });
+    confirm();
   });
 
   return (

@@ -18,7 +18,7 @@ const ButtonSns: React.FC<Props> = ({ href, icon, bgColor, children }) => {
     <a
       href={href}
       style={{ minWidth: "100px" }}
-      className="flex inline-block py-1 text-white justify-center rounded hover:opacity-75"
+      className="flex py-1 text-white justify-center h-8 rounded hover:opacity-75"
       css={button}
     >
       <img src={icon} className="w-4 mr-2" alt="#" />
