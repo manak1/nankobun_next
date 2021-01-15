@@ -4,12 +4,16 @@ import CreateForm from "../../../components/view/create/CreateForm";
 import Ogp from "../../../components/common/Ogp";
 import { createShindan } from "../../../lib/firebase";
 import { useRouter } from "next/router";
+import Form from "../../../@types/form";
 
 const Create: React.FC = () => {
   const initialForm = {
     name: "manaki",
-    emoji: "🍎",
-    author: "manaki is gorilla",
+    emoji: {
+      native: "🍎",
+      id: "apple",
+    },
+    author: "manaki",
     height: 20,
     unit: "個",
   };
@@ -17,11 +21,9 @@ const Create: React.FC = () => {
   const [form, setForm] = useState(initialForm);
   const router = useRouter();
 
-  async function confirm() {
-    const docId = await createShindan(form);
-    console.log(docId);
+  async function confirm(confirmForm: Form) {
+    const docId = await createShindan(confirmForm);
     router.push(`/shindan/${docId}`);
-    return docId;
   }
 
   return (
@@ -37,7 +39,7 @@ const Create: React.FC = () => {
           <p>( ログイン不要 )</p>
         </aside>
         <CreateForm form={form} setForm={setForm} confirm={confirm} />
-        <div className="mt-12 px-8">
+        <div className="mt-12 px-4 sm:px-8">
           <p className="font-bold mb-2">完成イメージ✨</p>
           <Ogp shindanData={form} />
         </div>
