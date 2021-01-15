@@ -2,8 +2,21 @@ import Logo from "../components/icons/Logo";
 import Default from "../components/layout/Default";
 import Button from "../components/common/Button";
 import SnsGroup from "../components/common/SnsGroup";
+import Latest from "../components/view/Latest";
+import { useEffect, useState } from "react";
+import { getLatest } from "../lib/firebase";
 
 export default function Home() {
+  const [shindanList, setShindanList] = useState([]);
+  useEffect(() => {
+    const init = async () => {
+      const tempShindanList = await getLatest();
+      console.log(tempShindanList);
+      setShindanList(tempShindanList);
+    };
+
+    init();
+  }, []);
   return (
     <Default>
       <div className="pt-4 container mx-auto">
@@ -21,6 +34,7 @@ export default function Home() {
         <div className="mt-4 text-center">
           <Button href="/shindan/create">診断を作る</Button>
         </div>
+        <Latest shindanList={shindanList} />
       </div>
     </Default>
   );

@@ -30,5 +30,12 @@ export async function createShindan(form: Form): Promise<string> {
 export async function getShindan(docId: string): Promise<Form> {
   const shindan = await firebase.firestore().collection('shindan').doc(docId).get()
   return shindan.data() as Form
+}
 
+export async function getLatest(): Promise<Form[]> {
+  const snapShot = await firebase.firestore().collection('shindan').limit(5).get()
+  const shindanList = snapShot.docs.map(m => {
+    return m.data() as Form
+  })
+  return shindanList
 }

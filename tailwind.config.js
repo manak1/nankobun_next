@@ -6,6 +6,9 @@ module.exports = {
       ...theme("colors"),
       base: "#F9F9F9",
     }),
+    minHeight: {
+      90: "70vh",
+    },
   },
   variants: {
     extend: {},
