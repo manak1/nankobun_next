@@ -18,7 +18,7 @@ https://shincyo-shindan.manaki.vercel.app/
 
 - Next.js
 - Firebase
-- React Hook Home
+- React Hook Form
 - tailwindcss
 
 ## 動作確認
