@@ -35,13 +35,13 @@ const Ogp: React.FC<Props> = ({ shindanData }) => {
   return (
     <div
       css={ogpBox}
-      className="p-4 relative flex flex-col bg-blue-400 text-center mx-auto rounded text-white h-52"
+      className="p-2 sm:p-4 relative flex flex-col bg-blue-400 text-center mx-auto rounded text-white h-40 sm:h-52"
     >
       <div css={ogpTop}>
-        <h2 className="font-bold text-4xl mt-2">あなたの身長は</h2>
-        <p className="font-bold text-4xl mt-2">
-          <span style={{ fontSize: "45px" }} className="mr-1">
-            {shindanData.emoji}
+        <h2 className="font-bold text-2xl sm:text-4xl mt-2">あなたの身長は</h2>
+        <p className="font-bold text-2xl sm:text-4xl mt-2">
+          <span className="mr-1 text-3xl sm:text-5xl">
+            {shindanData.emoji.native}
           </span>
           何{shindanData.unit}分?
         </p>
@@ -50,7 +50,7 @@ const Ogp: React.FC<Props> = ({ shindanData }) => {
         <a
           href="#"
           css={buttonCta}
-          className="inline-block mx-auto text-xl font-bold pointer-events-none bg-blue-500 mt-4 text-white py-2 w-40 text-center shadow rounded-md"
+          className="inline-block mx-auto text-sm sm:text-xl font-bold pointer-events-none bg-blue-500 mt-2  sm:mt-4 text-white py-2 w-32 text-center shadow rounded-md"
         >
           診断する
         </a>

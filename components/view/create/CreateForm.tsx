@@ -6,11 +6,12 @@ import { Picker, Emoji } from "emoji-mart";
 import { jsx, css } from "@emotion/react";
 import "emoji-mart/css/emoji-mart.css";
 import Detecter from "../../common/Detecter";
+import { setConstantValue } from "typescript";
 
 type Props = {
   form: Form;
+  confirm: (form: Form) => void;
   setForm: (form: Form) => void;
-  confirm: () => void;
 };
 
 const picker = css({
@@ -70,23 +71,27 @@ const CreateForm: React.FC<Props> = ({ form, setForm, confirm }) => {
 
     setEmojiData(tempEmojiData);
     let tempForm = { ...form };
-    tempForm.emoji = emoji.native;
+    tempForm.emoji = {
+      id: emoji.id,
+      native: emoji.native,
+    };
     setForm(tempForm);
   }
 
   const onSubmit = handleSubmit((formData) => {
     const tempForm = {
-      emoji: emojiData.native,
+      emoji: {
+        native: emojiData.native,
+        id: emojiData.id,
+      },
       ...formData,
     };
     closeModal();
-    console.log(tempForm);
-    setForm({ ...tempForm });
-    confirm();
+    confirm(tempForm);
   });
 
   return (
-    <form action="#" onSubmit={onSubmit} className="text-left px-8">
+    <form action="#" onSubmit={onSubmit} className="text-left px-4 sm:px-8">
       <div className="flex flex-col mt-4">
         <span className="text-center font-medium">モノの絵文字</span>
         <a href="#" className="mt-2 text-center" onClick={showModal}>
