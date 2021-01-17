@@ -6,5 +6,6 @@ export default interface Form {
   }
   author: string,
   height: number,
-  unit: string
+  unit: string,
+  id?: string
 }
