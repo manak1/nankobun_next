@@ -29,7 +29,7 @@ const Create: React.FC = () => {
   return (
     <Default>
       <section className="pt-4">
-        <h1 className="flex items-center justify-center text-2xl font-bold">
+        <h1 className="flex items-center justify-center text-3xl font-bold">
           <figure className="w-8 ml-5">
             <img src="/static/images/icons/accessibility.svg" alt="" />
           </figure>

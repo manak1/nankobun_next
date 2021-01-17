@@ -1,10 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import Button from "../common/Button";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-blue-300 shadow-xl w-full container mx-auto border-l border-r">
+    <header className="bg-blue-300 shadow-xl w-full container mx-auto border-b border-l border-r">
       <div className="flex items-center justify-center mx-auto container px-4 py-3">
         <Link href="/">
           <a href="#">

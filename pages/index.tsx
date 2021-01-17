@@ -14,7 +14,6 @@ export default function Home() {
       console.log(tempShindanList);
       setShindanList(tempShindanList);
     };
-
     init();
   }, []);
   return (
@@ -27,12 +26,11 @@ export default function Home() {
           <br />
           面白いモノで診断を作ってみたり、測定してみてください！
         </p>
-        <div className="text-center mt-6">
-          <Button href="/">診断してみる</Button>
-        </div>
-        <SnsGroup />
+
         <div className="mt-4 text-center">
-          <Button href="/shindan/create">診断を作る</Button>
+          <Button href="/shindan/create" rounded>
+            診断を作る
+          </Button>
         </div>
         <Latest shindanList={shindanList} />
       </div>
