@@ -4,14 +4,15 @@ import Button from "../common/Button";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-white w-full container mx-auto border-l border-r">
-      <div className="flex items-center justify-between mx-auto container px-4 py-2">
+    <header className="bg-blue-300 shadow-xl w-full container mx-auto border-l border-r">
+      <div className="flex items-center justify-center mx-auto container px-4 py-3">
         <Link href="/">
           <a href="#">
-            <h1 className="font-bold text-lg">身長診断メーカー</h1>
+            <h1 className="font-bold text-xl text-white">
+              <span className="text-2xl mr-1">🙋‍♂️</span>身長診断メーカー
+            </h1>
           </a>
         </Link>
-        <Button href="/shindan/create">診断を作る</Button>
       </div>
     </header>
   );
