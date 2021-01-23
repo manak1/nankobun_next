@@ -49,7 +49,7 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
             <Emoji emoji={shindan.emoji.id} size={82} />
           </div>
           <form className="mt-4" action="#" onSubmit={onSubmit}>
-            <div className="flex items-center">
+            <div className="items-center">
               <input
                 type="number"
                 className="form-input bg-white border w-full py-2"
@@ -67,7 +67,7 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
                   },
                 })}
               />
-              <span className="text-red-500">{errors.userHeight?.message}</span>
+              <p className="text-red-500">{errors.userHeight?.message}</p>
             </div>
             <div className="text-center mt-2">
               <Button submit widthFull>
@@ -83,6 +83,7 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
                 itemUnit={shindan.unit}
                 itemHeight={shindan.height}
                 userHeight={formUserHeight}
+                emoji={shindan.emoji.native}
               />
             </div>
           ) : (

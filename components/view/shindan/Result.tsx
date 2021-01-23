@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { calculateResult } from "../../../lib/calculator";
+import Button from "../../common/Button";
 
 type Props = {
   itemHeight: number;
   userHeight: number;
   itemName: string;
   itemUnit: string;
+  emoji: string;
 };
 
 const Result: React.FC<Props> = ({
@@ -13,6 +15,7 @@ const Result: React.FC<Props> = ({
   itemUnit,
   itemHeight,
   userHeight,
+  emoji,
 }) => {
   const [resultNumber, setResultNumber] = useState(0);
 
@@ -21,13 +24,21 @@ const Result: React.FC<Props> = ({
   }, []);
   return (
     <>
-      <section className="mt-12">
-        <h2 className="text-2xl text-center font-bold">診断結果🎉</h2>
-        <p className="text-3xl text-center">
+      <section className="mt-10 border-4  border-blue-300 p-4 shadow-md">
+        <h2 className="text-xl text-center font-medium">🎉 診断結果 🎉</h2>
+        <p className="text-2xl font-bold mt-1 sm:text-3xl text-center">
           あなたの身長は{itemName}
           {resultNumber}
           {itemUnit}分
         </p>
+        <figure className="flex flex-wrap justify-center w-2/3 mt-4 mx-auto">
+          {new Array(resultNumber).fill(null).map(() => {
+            return <p>{emoji}</p>;
+          })}
+        </figure>
+        <div className="mt-7 text-center">
+          <Button>ツイートする</Button>
+        </div>
       </section>
     </>
   );
