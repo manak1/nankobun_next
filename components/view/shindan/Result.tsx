@@ -21,12 +21,13 @@ const Result: React.FC<Props> = ({
   }, []);
   return (
     <>
-      <section>
-        <h2 className="text-3xl">
+      <section className="mt-12">
+        <h2 className="text-2xl text-center font-bold">診断結果🎉</h2>
+        <p className="text-3xl text-center">
           あなたの身長は{itemName}
           {resultNumber}
           {itemUnit}分
-        </h2>
+        </p>
       </section>
     </>
   );

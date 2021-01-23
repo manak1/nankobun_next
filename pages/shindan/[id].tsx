@@ -26,7 +26,7 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
   const { register, handleSubmit, reset, errors } = useForm<InputForm>({
     mode: "onChange",
     defaultValues: {
-      userHeight: 0,
+      userHeight: null,
     },
   });
 
@@ -43,9 +43,12 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
             あなたの身長は{shindan.name}何{shindan.unit}分!!?
           </h1>
           <div className="mt-2 mx-auto text-center">
-            <Emoji emoji={shindan.emoji.id} size={96} />
+            {/*  <p style={{ fontSize: "72px" }} className="mb-2 leading-none">
+              {shindan.emoji.native}
+            </p> */}
+            <Emoji emoji={shindan.emoji.id} size={82} />
           </div>
-          <form action="#" onSubmit={onSubmit}>
+          <form className="mt-4" action="#" onSubmit={onSubmit}>
             <div className="flex items-center">
               <input
                 type="number"
@@ -60,22 +63,28 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
                   },
                   max: {
                     value: 272,
-                    message: "身長嘘つかないで😜",
+                    message: "身長盛らない😡",
                   },
                 })}
               />
+              <span className="text-red-500">{errors.userHeight?.message}</span>
+            </div>
+            <div className="text-center mt-2">
+              <Button submit widthFull>
+                診断する
+              </Button>
             </div>
           </form>
-          <div className="text-center mt-2">
-            <Button widthFull>診断する</Button>
-          </div>
+
           {showResult ? (
-            <Result
-              itemName={shindan.name}
-              itemUnit={shindan.unit}
-              itemHeight={shindan.height}
-              userHeight={formUserHeight}
-            />
+            <div className="animate__animated animate__fadeIn animate__faster">
+              <Result
+                itemName={shindan.name}
+                itemUnit={shindan.unit}
+                itemHeight={shindan.height}
+                userHeight={formUserHeight}
+              />
+            </div>
           ) : (
             ""
           )}
