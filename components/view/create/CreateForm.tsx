@@ -6,7 +6,6 @@ import { Picker, Emoji } from "emoji-mart";
 import { jsx, css } from "@emotion/react";
 import "emoji-mart/css/emoji-mart.css";
 import Detecter from "../../common/Detecter";
-import { setConstantValue } from "typescript";
 
 type Props = {
   form: Form;
@@ -35,7 +34,7 @@ const CreateForm: React.FC<Props> = ({ form, setForm, confirm }) => {
     native: "🍎",
     id: "apple",
   });
-  const { register, handleSubmit, reset, errors } = useForm<Form>({
+  const { register, handleSubmit, errors } = useForm<Form>({
     mode: "onChange",
     defaultValues: {
       author: "",
