@@ -24,8 +24,7 @@ const Result: React.FC<Props> = ({
   }, []);
   return (
     <>
-      <section className="mt-10 border-4  border-blue-300 p-4 shadow-md">
-        <h2 className="text-xl text-center font-medium">🎉 診断結果 🎉</h2>
+      <section className="mt-4 border-4  border-blue-300 p-4 shadow-md">
         <p className="text-2xl font-bold mt-1 sm:text-3xl text-center">
           あなたの身長は{itemName}
           {resultNumber}

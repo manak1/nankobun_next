@@ -43,9 +43,6 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
             あなたの身長は{shindan.name}何{shindan.unit}分!!?
           </h1>
           <div className="mt-2 mx-auto text-center">
-            {/*  <p style={{ fontSize: "72px" }} className="mb-2 leading-none">
-              {shindan.emoji.native}
-            </p> */}
             <Emoji emoji={shindan.emoji.id} size={82} />
           </div>
           <form className="mt-4" action="#" onSubmit={onSubmit}>
@@ -78,6 +75,10 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
 
           {showResult ? (
             <div className="animate__animated animate__fadeIn animate__faster">
+              <h2 className="mt-8 text-xl text-center font-medium">
+                🎉 診断結果 🎉
+              </h2>
+
               <Result
                 itemName={shindan.name}
                 itemUnit={shindan.unit}
@@ -85,6 +86,18 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
                 userHeight={formUserHeight}
                 emoji={shindan.emoji.native}
               />
+              <div className="mt-6">
+                <h2 className="text-xl font-bold text-center">🕵️‍♂️解説</h2>
+                <p className="mt-2">
+                  {shindan.author}さんによると、{shindan.name}の高さは平均
+                  {shindan.height}cmと言われているよ！ みんなの身長は
+                  {shindan.name}何{shindan.unit}分だったかな？👀
+                </p>
+                <p className="mt-2">
+                  面白い結果が出たらツイッターで共有したり、友達に紹介してみてね！
+                  自分の診断を作る事も出来るので色々楽しんでいってね🙋‍♂️
+                </p>
+              </div>
             </div>
           ) : (
             ""
@@ -95,9 +108,14 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, router }) {
   const docId = params.id;
   const shindan = await getShindan(docId);
+  if (!shindan) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       shindan,
