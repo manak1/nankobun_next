@@ -1,0 +1,33 @@
+.p-legal p {
+  font-size: 13px;
+  margin-top: 20px;
+  line-height: 19px;
+}
+
+.p-legal p + ol {
+  padding-left: 20px;
+}
+
+.p-legal h2 {
+  font-size: 24px;
+  line-height: 45px;
+  font-weight: bold;
+}
+
+.p-legal h3 {
+  margin-top: 35px;
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: bold;
+}
+
+.p-legal li {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: middle;
+}
+
+.p-legal ol {
+  padding-left: 20px;
+}

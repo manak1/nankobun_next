@@ -1,12 +1,29 @@
 import React, { useEffect } from "react";
 import Default from "../../components/layout/Default";
+import { NextPage, NextPageContext } from "next";
+import ReactMarkdown from "react-markdown";
 
-const Legal: React.FC = () => {
+type Props = {
+  legal: any;
+};
+
+const Legal: NextPage<Props> = ({ legal }) => {
   return (
     <>
-      <Default></Default>
+      <Default>
+        <div className="p-legal">
+          <ReactMarkdown source={legal.default} />
+        </div>
+      </Default>
     </>
   );
+};
+
+Legal.getInitialProps = async (ctx: NextPageContext) => {
+  const legalContent = await require(`../../doc/legal.md`);
+  return {
+    legal: legalContent,
+  };
 };
 
 export default Legal;
