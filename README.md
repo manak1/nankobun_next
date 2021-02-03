@@ -6,7 +6,7 @@ Nankobunとは自分の身長を色々なもので例えるといくつに相当
 
 ## 本番環境
 
-https://shincyo-shindan.manaki.vercel.app/
+https://shincyo-shindan.vercel.app/
 
 
 ## 製作者
