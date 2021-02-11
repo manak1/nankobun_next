@@ -70,6 +70,10 @@ const Footer: React.FC = () => {
           <a className="text-blue-400" href="https://twitter.com/mikeanakida">
             Twitter
           </a>
+          <span>/</span>
+          <a className="text-blue-400" href="https://twilink.click">
+            Twilink
+          </a>
         </div>
         <small className="mt-2 inline-block">&copy; 🐧hungrypenguin</small>
       </div>

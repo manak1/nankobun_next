@@ -8,15 +8,23 @@ type Props = {
   children: string;
   rounded?: boolean;
   widthFull?: boolean;
+  width?: string;
   submit?: boolean;
   onClick?: () => void;
 };
 
 const changeRoundedClass = (rounded: boolean) => {
-  return rounded ? "rounded-3xl" : "";
+  return rounded ? "rounded-md" : "";
 };
 
-const changeWidthClass = (widthFull: boolean) => {
+const changeWidthClass = (width: string) => {
+  if (width === "medium") {
+    return "w-36";
+  }
+  return "";
+};
+
+const changeWidthFullClass = (widthFull: boolean) => {
   return widthFull ? "w-full" : "rounded-md";
 };
 
@@ -25,6 +33,7 @@ const Button: React.FC<Props> = ({
   href,
   onClick,
   rounded,
+  width,
   widthFull,
   submit,
 }) => {
@@ -40,7 +49,7 @@ const Button: React.FC<Props> = ({
             href="#"
             className={`inline-block mx-auto bg-blue-500 text-white hover:opacity-75 py-2 w-32 text-center shadow  ${changeRoundedClass(
               rounded
-            )}`}
+            )} ${changeWidthClass(width)}`}
           >
             {children}
           </a>
@@ -51,7 +60,7 @@ const Button: React.FC<Props> = ({
           type={isSubmit()}
           className={`inline-block mx-auto bg-blue-500 text-white py-2 w-32 hover:opacity-75 text-center shadow  ${changeRoundedClass(
             rounded
-          )} ${changeWidthClass(widthFull)}`}
+          )} ${changeWidthFullClass(widthFull)} ${changeWidthClass(width)} `}
         >
           {children}
         </button>

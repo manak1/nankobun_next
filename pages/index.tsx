@@ -16,17 +16,17 @@ export default function Home() {
   }, []);
   return (
     <Default>
-      <div className="pt-4 container mx-auto">
-        <h2 className="text-3xl font-bold text-center">身長診断メーカー</h2>
+      <div className="pt-8 container mx-auto">
+        <h2 className="text-xl font-bold text-center tracking-wide">
+          あなたの身長は〇〇何個分?
+        </h2>
         <Logo className="h-20 mt-6 mx-auto text-center" />
         <p className="text-sm mt-5 text-center leading-relaxed">
           いろんなモノであなたの身長をあらわすことが出来るサイトです。
-          <br />
           面白いモノで診断を作ってみたり、測定してみてください！
         </p>
-
-        <div className="mt-4 text-center">
-          <Button href="/shindan/create" rounded>
+        <div className="mt-8 text-center">
+          <Button href="/shindan/create" rounded width="medium">
             診断を作る
           </Button>
         </div>

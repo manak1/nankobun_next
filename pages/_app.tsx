@@ -8,10 +8,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="description"
           content="身長診断メーカー。いろんなモノであなたの身長をあらわす事が出来るサイトです。面白いモノで診断を作ってみたり、測定してみてください"
