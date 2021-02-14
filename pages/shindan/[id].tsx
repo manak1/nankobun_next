@@ -7,6 +7,8 @@ import { Emoji } from "emoji-mart";
 import Button from "../../components/common/Button";
 import Result from "../../components/view/shindan/Result";
 import { useForm } from "react-hook-form";
+import SnsGroup from "../../components/common/SnsGroup";
+import { useRouter } from "next/router";
 
 type Props = {
   shindan: Form;
@@ -30,6 +32,9 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
     },
   });
 
+  const router = useRouter();
+  const docId = router.query.id as string;
+
   const onSubmit = handleSubmit((formData) => {
     setFormUserHeight(formData.userHeight);
     setShowResult(true);
@@ -39,10 +44,10 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
     <>
       <Default>
         <section className="pt-4">
-          <h1 className="font-bold text-2xl text-center">
+          <h1 className="font-bold text-xl text-center">
             あなたの身長は{shindan.name}何{shindan.unit}分!!?
           </h1>
-          <div className="mt-2 mx-auto text-center">
+          <div className="mt-4 mx-auto text-center">
             <Emoji emoji={shindan.emoji.id} size={82} />
           </div>
           <form className="mt-4" action="#" onSubmit={onSubmit}>
@@ -88,7 +93,7 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
               />
               <div className="mt-6">
                 <h2 className="text-xl font-bold text-center">🕵️‍♂️解説</h2>
-                <p className="mt-2">
+                <p className="mt-4">
                   {shindan.author}さんによると、{shindan.name}の高さは平均
                   {shindan.height}cmと言われているよ！ みんなの身長は
                   {shindan.name}何{shindan.unit}分だったかな？👀
@@ -98,6 +103,7 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
                   自分の診断を作る事も出来るので色々楽しんでいってね🙋‍♂️
                 </p>
               </div>
+              <SnsGroup docId={docId} />
             </div>
           ) : (
             ""

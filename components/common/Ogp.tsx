@@ -35,7 +35,7 @@ const Ogp: React.FC<Props> = ({ shindanData }) => {
   return (
     <div
       css={ogpBox}
-      className="p-1 w-4/5 pt-5 pb-6 relative flex flex-col bg-blue-400 text-center mx-auto rounded text-white"
+      className="p-1 w-4/5 pt-5 pb-6 relative flex flex-col bg-blue-400 text-center mx-auto rounded text-white sm:pt-6 sm:pb-8"
     >
       <div css={ogpTop}>
         <h2 className="font-bold text-xl sm:text-2xl">あなたの身長は</h2>
@@ -46,11 +46,11 @@ const Ogp: React.FC<Props> = ({ shindanData }) => {
           何{shindanData.unit}分?
         </p>
       </div>
-      <div className="mt-2" css={ogpBottom}>
+      <div className="mt-2 sm:mt-4" css={ogpBottom}>
         <a
           href="#"
           css={buttonCta}
-          className="inline-block text-xs mx-auto font-bold pointer-events-none bg-blue-500 text-white py-2 w-24 text-center shadow rounded-md"
+          className="inline-block text-xs mx-auto font-bold pointer-events-none bg-blue-500 text-white py-2 w-24 text-center shadow rounded-md  sm:w-32 sm:text-base"
         >
           診断する
         </a>
