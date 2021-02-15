@@ -47,13 +47,12 @@ const Ogp: React.FC<Props> = ({ shindanData }) => {
         </p>
       </div>
       <div className="mt-2 sm:mt-4" css={ogpBottom}>
-        <a
-          href="#"
+        <div
           css={buttonCta}
           className="inline-block text-xs mx-auto font-bold pointer-events-none bg-blue-500 text-white py-2 w-24 text-center shadow rounded-md  sm:w-32 sm:text-base"
         >
           診断する
-        </a>
+        </div>
       </div>
       <span className="absolute" css={ogpTitle}>
         身長診断メーカー

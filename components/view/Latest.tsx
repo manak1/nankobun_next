@@ -13,21 +13,19 @@ const Latest: React.FC<Props> = ({ shindanList }) => {
       <section className="pt-12">
         <h2 className="text-xl font-bold text-center">✨新着の診断</h2>
         <ul className="space-y-6 mt-8">
-          {shindanList.map((shindan) => {
+          {shindanList.map((shindan,index) => {
             return (
-              <>
-                <li>
+                <li key={index}>
                   <Link
                     href="/shindan/[id]"
                     as={`/shindan/${shindan.id}`}
                     key={shindan.id}
                   >
-                    <a href="#">
+                    <a href='#'>
                       <Ogp shindanData={shindan} />
                     </a>
                   </Link>
                 </li>
-              </>
             );
           })}
         </ul>
