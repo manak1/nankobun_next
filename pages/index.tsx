@@ -1,4 +1,3 @@
-import Logo from "../components/icons/Logo";
 import Default from "../components/layout/Default";
 import Button from "../components/common/Button";
 import Latest from "../components/view/Latest";
@@ -27,7 +26,7 @@ export default function Home() {
         />
         <p className="text-sm mt-6 text-center leading-relaxed">
           いろんなモノであなたの身長を測ることが出来るサイトです。
-          <br />
+          <br className="hidden sm:block" />
           面白いモノで診断を作ってみたり、測定してみてください！
         </p>
         <div className="mt-8 text-center">

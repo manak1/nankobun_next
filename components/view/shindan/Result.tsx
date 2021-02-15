@@ -1,6 +1,13 @@
+/** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
 import { calculateResult } from "../../../lib/calculator";
 import Button from "../../common/Button";
+import {css} from "@emotion/react"
+
+
+const resultFrame = css({
+  minHeight: '180px'
+});
 
 type Props = {
   itemHeight: number;
@@ -24,18 +31,18 @@ const Result: React.FC<Props> = ({
   }, []);
   return (
     <>
-      <section className="mt-4 border-4  border-blue-300 p-4 shadow-md">
-        <p className="text-2xl font-bold mt-1 sm:text-3xl text-center">
+      <section className="mt-4 relative flex flex-col border-4 h-30  border-blue-300 p-4 shadow-md" css={resultFrame}>
+        <p className="text-xl font-bold mt-1 sm:text-2xl text-center">
           あなたの身長は{itemName}
           {resultNumber}
           {itemUnit}分
         </p>
-        <figure className="flex flex-wrap justify-center w-2/3 mt-4 mx-auto">
-          {new Array(resultNumber).fill(null).map(() => {
-            return <p>{emoji}</p>;
+        <figure className="flex flex-1 flex-wrap  justify-center sm:text-xl mt-4 mx-auto">
+          {new Array(resultNumber).fill(null).map((d,index) => {
+            return <p key={index}>{emoji}</p>;
           })}
         </figure>
-        <div className="mt-7 text-center">
+        <div className="mt-4 pt-2 text-center">
           <Button>ツイートする</Button>
         </div>
       </section>
