@@ -4,10 +4,13 @@ import { calculateResult } from "../../../lib/calculator";
 import Button from "../../common/Button";
 import {css} from "@emotion/react"
 
-
 const resultFrame = css({
   minHeight: '180px'
 });
+
+const emojiIcons = css({
+  minHeight: '56px'
+})
 
 type Props = {
   itemHeight: number;
@@ -24,10 +27,12 @@ const Result: React.FC<Props> = ({
   userHeight,
   emoji,
 }) => {
+  
   const [resultNumber, setResultNumber] = useState(0);
 
   useEffect(() => {
     setResultNumber(calculateResult(userHeight, itemHeight));
+
   }, []);
   return (
     <>
@@ -37,12 +42,12 @@ const Result: React.FC<Props> = ({
           {resultNumber}
           {itemUnit}分
         </p>
-        <figure className="flex flex-1 flex-wrap  justify-center sm:text-xl mt-4 mx-auto">
+        <figure className="flex flex-1 flex-wrap items-center justify-center sm:text-xl mt-4 mx-auto">
           {new Array(resultNumber).fill(null).map((d,index) => {
             return <p key={index}>{emoji}</p>;
           })}
         </figure>
-        <div className="mt-4 pt-2 text-center">
+        <div className="mt-4  pt-2 text-center">
           <Button>ツイートする</Button>
         </div>
       </section>
