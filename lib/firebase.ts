@@ -3,6 +3,19 @@ import 'firebase/auth'
 import 'firebase/firestore'
 import Form from "../@types/form"
 
+export interface FirebaseData  {
+  name: string,
+  emoji: {
+    id: string,
+    native: string
+  }
+  author: string,
+  height: number,
+  unit: string,
+  id?: string,
+  randomType: number
+}
+
 
 if (firebase.apps.length === 0) {
   const firebaseConfig = {
@@ -21,24 +34,46 @@ if (firebase.apps.length === 0) {
 export async function createShindan(form: Form): Promise<string> {
   const shindan = firebase.firestore().collection('shindan')
   const result = await shindan.add({
-    ...form
+    ...form,
+    randomType: Math.round(Math.random()*5)
   })
   const docId = result.id
   return docId;
 }
 
-export async function getShindan(docId: string): Promise<Form> {
+export async function getShindan(docId: string): Promise<FirebaseData> {
   const shindan = await firebase.firestore().collection('shindan').doc(docId).get()
-  return shindan.data() as Form
+  if(shindan) {
+    return shindan.data() as FirebaseData
+  }
+
+  return 
 }
 
-export async function getLatest(): Promise<Form[]> {
+export async function getLatest(): Promise<FirebaseData[]> {
   const snapShot = await firebase.firestore().collection('shindan').limit(5).get()
-  const shindanList = snapShot.docs.map(m => {
-    return {
-      ...m.data(),
-      id: m.id
-    } as Form
-  })
-  return shindanList
+  if(snapShot) {
+    const shindanList = snapShot.docs.map(m => {
+      return {
+        ...m.data(),
+        id: m.id
+      } as FirebaseData
+    })
+    return shindanList
+  }
+  return 
+}
+
+
+export async function getOther(randomType: number): Promise<FirebaseData[]> {
+  const snapShot = await firebase.firestore().collection('shindan').where('randomType','==',randomType).limit(3).get()
+  if(snapShot) {
+    const shindanList = snapShot.docs.map(m=>{
+      return {
+        ...m.data(),
+        id: m.id
+      }  as FirebaseData
+    })
+    return shindanList
+  }
 }
