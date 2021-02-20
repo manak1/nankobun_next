@@ -1,28 +1,37 @@
-import React, { useState } from "react";
+/** @jsxImportSource @emotion/react */
+import React, { useState, useEffect } from "react";
 import { NextPage } from "next";
-import { getShindan } from "../../lib/firebase";
+import { getShindan, getOther,FirebaseData } from "../../lib/firebase";
 import Form from "../../@types/form";
 import Default from "../../components/layout/Default";
-import { Emoji } from "emoji-mart";
 import Button from "../../components/common/Button";
 import Result from "../../components/view/shindan/Result";
 import { useForm } from "react-hook-form";
 import SnsGroup from "../../components/common/SnsGroup";
 import { useRouter } from "next/router";
+import {css} from "@emotion/react"
+import Other from "../../components/view/shindan/Other"
+
 
 type Props = {
-  shindan: Form;
+  shindan: FirebaseData
 };
 
 type InputForm = {
   userHeight: number;
 };
 
+const emojiIcon = css({
+  fontSize: '80px',
+  lineHeight: 1
+})
+
 /* 
 TODO: 作成して遷移してきたらシェアしよう！！という旨のモーダルを表示する || 普通にシェアボタンを作っておく。 || どっちも
 */
 
 const Sokutei: NextPage<Props> = ({ shindan }) => {
+  const [otherShindanList, setOtherShindanList] = useState([])
   const [showResult, setShowResult] = useState(false);
   const [formUserHeight, setFormUserHeight] = useState(0);
   const { register, handleSubmit, reset, errors } = useForm<InputForm>({
@@ -40,6 +49,15 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
     setShowResult(true);
   });
 
+  useEffect(() => {
+    const init = async()=> {
+      const tempShindanList = await getOther(shindan.randomType)
+      setOtherShindanList(tempShindanList)
+      console.log(tempShindanList)
+    }
+    init()
+   }, [])
+
   return (
     <>
       <Default>
@@ -48,7 +66,9 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
             あなたの身長は{shindan.name}何{shindan.unit}分!!?
           </h1>
           <div className="mt-4 mx-auto text-center">
-            <Emoji emoji={shindan.emoji.id} size={82} />
+            <p css={emojiIcon}>
+              {shindan.emoji.native}
+            </p>
           </div>
           <form className="mt-4" action="#" onSubmit={onSubmit}>
             <div className="items-center">
@@ -104,6 +124,7 @@ const Sokutei: NextPage<Props> = ({ shindan }) => {
                 </p>
               </div>
               <SnsGroup docId={docId} />
+              <Other otherShindanList={otherShindanList} />
             </div>
           ) : (
             ""
